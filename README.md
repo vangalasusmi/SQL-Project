@@ -15,7 +15,6 @@ Performed some data Quality checks and modified the data accordingly.
 Wrote some queries to provide some meaningful insights on the data.
 
 ## Results
-(fill in what you discovered this data could tell you and how you used the data to answer those questions)
 This is e-commerce data, which has product details, sales, and visitor data, and buying patterns based on the city and country.
 
 ## Challenges 
@@ -28,4 +27,4 @@ But here, I faced a challenge because the data existing in sales_by_sku is not p
 One more example, It was very difficult to identify the relationships between all_sessions and analytics table, Though they are similar columns like visitid,fullvisitorid.
 
 ## Future Goals
-(What would you do if you had more time?)
+Would have analaysed data in detail and make more and more assumptions as I feel the data set provided is incomplete and would create a better ERD Diagrams
