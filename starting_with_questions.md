@@ -83,7 +83,8 @@ select country, city, productname
 from sale_by_country
 where rank = 1
 ```
-![image](https://github.com/vangalasusmi/SQL-Project/assets/9608114/25311d84-7817-414b-b2b8-bcb2bf8ee778)
+![image](https://github.com/vangalasusmi/SQL-Project/assets/9608114/e345d55a-61a1-456c-b712-9d5f7e6a1a5f)
+
 
 **Question 5: Can we summarize the impact of revenue generated from each city/country?**
 ``` SQL
