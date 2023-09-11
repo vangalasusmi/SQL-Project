@@ -1,19 +1,42 @@
-What are your risk areas? Identify and describe them.
+## What are your risk areas? Identify and describe them.
+(1) Duplicate Records: Duplicate Records may take up more space, also could be a factor for inaccurate values.
 
+(2) Correct Datatypes : Datatypes should be correct across all tables.
 
+(3) Unique IDs :
+some IDs that are cruical to the data shoud be unique
 
-QA Process:
+## QA Process:
 Describe your QA process and include the SQL queries used to execute it.
 
-1.Data Validation: the Visitid and visitstarttime are same, Here the data accuracy and completeness of the data is missing.
-Unit price defined for each unit_product is incomplete as the transactionrevenue is low.
+- Starting with all_sessions column 
 
- Data Integrity is not maintained between the products tables and sales_by_sku tables as the foreign key constraints are not satisfied.
- Issue when considering primary table as product (ProductSKU as a pk), Sales_By_sku (SKU as fk)
-ERROR:  Key (productsku)=(GGOEYAXR066128) is not present in table "products".insert or update on table "sales_by_sku" violates foreign key constraint "sales_by_sku_productsku_fkey" 
+-- Making sure there is no duplicate fulllvisitorid as there should be distinct id for every user
+```SQL
+select 
+distinct(fullvisitorid) from all_sessions
+```
+---unit_price and unit_sold should be in positive number and more than zero to get accurate numbers
+```SQL
+alter table analytics alter column unit_price type int using unit_price::int
 
-ERROR:  insert or update on table "sales_by_sku" violates foreign key constraint "sales_by_sku_productsku_fkey"
-SQL state: 23503
-Detail: Key (productsku)=(GGOEYAXR066128) is not present in table "products".
+alter table analytics alter column unit_sold type int using unit_sold::int
 
+select * from analytics where unit_price < 0 and units_sold < 0
+---0 records retunred.
 
+-- Products Table
+-- Each product should only have unique id
+select distinct(sku) from products
+
+-- orderedquantity and stocklevel should be more than 0
+select * from products
+where orderedquantity >= 0 and stocklevel >=0
+--0 records returned.
+
+-- Total products ordered should be atleast one and stocklevel should be more than zero
+select * 
+from sales_report
+where total_ordered > 0 and stocklevel >= 0
+select * from sales_report
+```
