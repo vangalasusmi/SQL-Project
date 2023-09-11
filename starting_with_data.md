@@ -34,5 +34,6 @@ Answer:![Alt text](https://github.com/vangalasusmi/SQL-Project/assets/9608114/90
 ``` SQL
 SQL Queries:select extract(year from date) as year,country,city,count(*) from all_sessions group by country,city,year
 ```
-Answer:![Alt text](https://github.com/vangalasusmi/SQL-Project/assets/9608114/247329f3-e124-4841-b135-ae48a5f28356)
+Answer:![image](https://github.com/vangalasusmi/SQL-Project/assets/9608114/4d1acdf6-c2b7-45b4-867f-16e05de928af)
+
 
