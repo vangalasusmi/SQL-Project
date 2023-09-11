@@ -108,9 +108,7 @@ alter table all_sessions
 drop column itemquantity 
 ```
 ## Results
-Answer the following questions and provide the SQL queries used to find the answer.
-
-    
+// Few insights I got from the data are below.    
 **Question 1: Which cities and countries have the highest level of transaction revenues on the site?**
 
 ``` SQL
