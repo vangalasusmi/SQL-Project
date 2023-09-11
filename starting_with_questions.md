@@ -3,34 +3,24 @@ Answer the following questions and provide the SQL queries used to find the answ
     
 **Question 1: Which cities and countries have the highest level of transaction revenues on the site?**
 
-
+``` SQL
 SQL Queries:select  a.city,a.country.a.total_revenue from
 (select sum(totaltransactionrevenue) as total_revenue,
 	   city,
 	   country from  all_sessions group by city,country) a
 	   order by total_revenue
-Answer:
-
-
-
+```
 
 **Question 2: What is the average number of products ordered from visitors in each city and country?**
-
-
+``` SQL
 SQL Queries:select cast(avg(a.total_products_sold) as int) as avg_products_sold,a.city,a.country from
 (select sum(productquantity) as total_products_sold,
 	   city,country from all_sessions
 	   group by city,country) a group by a.city,a.country --order by cast(avg(a.total_products_sold) as int) desc
-Answer:
-
-
-
-
+```
 
 **Question 3: Is there any pattern in the types (product categories) of products ordered from visitors in each city and country?**
-
-
-SQL Queries:
+``` SQL
 create temp table overall_cate as
 (    -- Product categories of products ordered from visitors in each city and country
    select  country, city, p.name as productname, v2productcategory,
@@ -59,16 +49,9 @@ finding top 3 orders with lowest volume ordered in each city and country
 group by country, city, v2productcategory
 order by min(total_products) desc
 limit 3
-
-
-Answer:
-
-
-
-
-
+```
 **Question 4: What is the top-selling product from each city/country? Can we find any pattern worthy of noting in the products sold?**
-Query:
+``` SQL
 with sale_by_country as     -- Creating CTE with total products sold in each city from each country with products name
 (
         select country, city, p.name as productname,
@@ -83,24 +66,10 @@ order by country, city
 select country, city, productname
 from sale_by_country
 where rank = 1
-
-
-Answer:
-
-
-
-
-
+```
 **Question 5: Can we summarize the impact of revenue generated from each city/country?**
-
+``` SQL
 SQL Queries:This Question is inappropriate, because out of 15,000 records only 81 records has the data, So the impact generated is not accurate according to the data. As we have outliers, the impact of revenue generated will not be accurate.
 select count(*) from all_sessions where totaltransactionrevenue is  null
 15053
-Answer:
-
-
-
-
-
-
-
+```
